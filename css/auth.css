@@ -1,0 +1,129 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.auth-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.auth-form{
+    width:420px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    text-align:center;
+}
+
+.auth-form h2{
+    color:#fff;
+    font-size:30px;
+    margin-bottom:25px;
+    font-weight:700;
+}
+
+.auth-form input,
+.auth-form select{
+    width:100%;
+    padding:15px;
+    margin:12px 0;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.12);
+    color:#fff;
+    font-size:15px;
+}
+
+.auth-form input::placeholder{
+    color:#ddd;
+}
+
+.auth-form select{
+    color:#fff;
+}
+
+.auth-form option{
+    color:black;
+}
+
+.auth-form input:focus,
+.auth-form select:focus{
+    border:1px solid #38bdf8;
+    background:rgba(255,255,255,0.15);
+}
+
+.auth-form button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    background:linear-gradient(90deg,#38bdf8,#6366f1);
+    border:none;
+    border-radius:12px;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.auth-form button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(56,189,248,0.4);
+}
+
+.auth-form p{
+    margin-top:20px;
+    color:#ddd;
+    font-size:14px;
+}
+
+.auth-form a{
+    color:#38bdf8;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.password-box{
+    position:relative;
+    width:100%;
+    margin:12px 0;
+}
+
+.password-box input{
+    width:100%;
+    padding:15px;
+    padding-right:50px;
+}
+
+.toggle-eye{
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    font-size:18px;
+    color:#888;
+    transition:0.3s;
+}
+
+.toggle-eye:hover{
+    color:#38bdf8;
+}

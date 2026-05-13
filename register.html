@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="auth-container">
+
+    <form action="php/register.php" method="POST" class="auth-form">
+
+        <h2>Create Account</h2>
+
+        <!-- NAME -->
+        <input 
+            type="text" 
+            name="name" 
+            placeholder="Enter Full Name" 
+            required
+        >
+
+        <!-- EMAIL -->
+        <input 
+            type="email" 
+            name="email" 
+            placeholder="Enter Email" 
+            required
+        >
+
+        <!-- PASSWORD -->
+        <div class="password-box">
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                placeholder="Enter Password (min 6 chars)" 
+                minlength="6"
+                required
+            >
+            <i class="fa-solid fa-eye toggle-eye" id="eyeIcon" onclick="togglePassword()"></i>
+        </div>
+
+        <!-- ROLE -->
+        <select name="role" required>
+            <option value="">Select Role</option>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+        </select>
+
+        <!-- SUBMIT -->
+        <button type="submit">Register</button>
+
+        <p>
+            Already have an account? 
+            <a href="login.html">Login</a>
+        </p>
+
+    </form>
+
+</div>
+
+<!-- PASSWORD TOGGLE -->
+<script>
+function togglePassword(){
+    const password = document.getElementById("password");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    if(password.type === "password"){
+        password.type = "text";
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+    } else {
+        password.type = "password";
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+    }
+}
+</script>
+
+</body>
+</html>
