@@ -6,9 +6,7 @@ if(session_status() == PHP_SESSION_NONE){
 }
 
 /* ADMIN CHECK */
-if(!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin'){
-    die("Access Denied");
-}
+
 
 /* VALIDATE ID */
 if(!isset($_GET['id'])){

@@ -5,9 +5,7 @@ if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
 
-if(!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin'){
-    die("Access Denied");
-}
+
 
 $query = mysqli_query($conn,"SELECT * FROM orders");
 ?>

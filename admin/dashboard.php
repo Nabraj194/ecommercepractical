@@ -1,14 +1,10 @@
 <?php
 include '../php/config.php';
-if(session_status() == PHP_SESSION_NONE){
+
+/* SESSION START */
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
-/* ADMIN CHECK */
-if(!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin'){
-    die("Access Denied");
-}
-
 /* COUNTS */
 $total_users = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) as total FROM users"))['total'];
 $total_products = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) as total FROM products"))['total'];
@@ -17,10 +13,14 @@ $total_orders = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(*) as total 
 
 /* CATEGORY (SUPPLY) */
 $category_data = mysqli_query($conn,"
-SELECT category, COUNT(*) as total FROM products GROUP BY category
+SELECT category, COUNT(*) as total 
+FROM products 
+GROUP BY category
 ");
+
 $categories = [];
 $counts = [];
+
 while($row = mysqli_fetch_assoc($category_data)){
     $categories[] = $row['category'];
     $counts[] = $row['total'];
@@ -28,10 +28,14 @@ while($row = mysqli_fetch_assoc($category_data)){
 
 /* ORDERS (DEMAND) */
 $order_data = mysqli_query($conn,"
-SELECT DATE(created_at) as day, COUNT(*) as total FROM orders GROUP BY day
+SELECT DATE(created_at) as day, COUNT(*) as total 
+FROM orders 
+GROUP BY DATE(created_at)
 ");
+
 $days = [];
 $order_counts = [];
+
 while($row = mysqli_fetch_assoc($order_data)){
     $days[] = $row['day'];
     $order_counts[] = $row['total'];
@@ -39,10 +43,14 @@ while($row = mysqli_fetch_assoc($order_data)){
 
 /* REVENUE */
 $revenue_data = mysqli_query($conn,"
-SELECT DATE(created_at) as day, SUM(total_price) as total FROM orders GROUP BY day
+SELECT DATE(created_at) as day, SUM(total_price) as total 
+FROM orders 
+GROUP BY DATE(created_at)
 ");
+
 $rev_days = [];
 $revenues = [];
+
 while($row = mysqli_fetch_assoc($revenue_data)){
     $rev_days[] = $row['day'];
     $revenues[] = $row['total'];
@@ -50,14 +58,19 @@ while($row = mysqli_fetch_assoc($revenue_data)){
 
 /* TOP PRODUCTS */
 $top_products = mysqli_query($conn,"
-SELECT product_id, COUNT(*) as total FROM cart 
-GROUP BY product_id ORDER BY total DESC LIMIT 5
+SELECT product_id, COUNT(*) as total 
+FROM cart 
+GROUP BY product_id 
+ORDER BY total DESC 
+LIMIT 5
 ");
 
 /* REPORTED PRODUCTS */
 $reports = mysqli_query($conn,"
 SELECT product_id, COUNT(*) as total 
-FROM reports GROUP BY product_id ORDER BY total DESC
+FROM reports 
+GROUP BY product_id 
+ORDER BY total DESC
 ");
 ?>
 
@@ -95,7 +108,6 @@ FROM reports GROUP BY product_id ORDER BY total DESC
 <h2 style="text-align:center;">Revenue</h2>
 <canvas id="revenueChart" style="max-width:700px;margin:30px auto;"></canvas>
 
-<!-- NAV -->
 <!-- NAV -->
 <div class="admin-links">
     <a href="admin_order.php">📦 Orders</a>

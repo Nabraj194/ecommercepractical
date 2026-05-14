@@ -1,11 +1,9 @@
 <?php
 include '../php/config.php';
-session_start();
+
 
 /* ADMIN CHECK */
-if(!isset($_SESSION['user']) || $_SESSION['user']['role'] != 'admin'){
-    die("Access Denied");
-}
+
 
 /* FETCH MESSAGES */
 $messages = mysqli_query($conn,"SELECT * FROM contact_messages ORDER BY id DESC");
